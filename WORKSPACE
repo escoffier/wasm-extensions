@@ -22,6 +22,7 @@ load("@io_bazel_rules_docker//repositories:deps.bzl", container_deps = "deps")
 container_deps()
 
 PROXY_WASM_CPP_SDK_SHA = "fd0be8405db25de0264bdb78fae3a82668c03782"
+#PROXY_WASM_CPP_SDK_SHA = "921039ae983ce053bf5cba78a85a3c08ff9791e5"
 
 PROXY_WASM_CPP_SDK_SHA256 = "c57de2425b5c61d7f630c5061e319b4557ae1f1c7526e5a51c33dc1299471b08"
 
@@ -65,3 +66,11 @@ proxy_wasm_cpp_host_repositories()
 load("@proxy_wasm_cpp_host//bazel:dependencies.bzl", "proxy_wasm_cpp_host_dependencies")
 
 proxy_wasm_cpp_host_dependencies()
+
+COMPDB_VER = "0.5.2"
+http_archive(
+    name = "bazel_compdb",
+    sha256 = "d32835b26dd35aad8fd0ba0d712265df6565a3ad860d39e4c01ad41059ea7eda",
+    strip_prefix = "bazel-compilation-database-" + COMPDB_VER,
+    url = "https://github.com/grailbio/bazel-compilation-database/archive/"+ COMPDB_VER +".tar.gz",
+)

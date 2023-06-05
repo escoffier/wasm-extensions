@@ -15,6 +15,24 @@ wasm_cc_binary(
     ],
 )
 
+cc_library(
+    name = "open_policy_agentlib",
+    srcs = [
+        "cache.cc",
+        "plugin.cc",
+        "@io_istio_proxy//extensions/common/wasm:base64.h",
+    ],
+    hdrs = [
+        "cache.h",
+        "plugin.h",
+    ],
+    copts = ["-DNULL_PLUGIN"],
+    deps = [
+        "@io_istio_proxy//extensions/common/wasm:json_util",
+        "@proxy_wasm_cpp_host//:lib",
+    ],
+)
+
 declare_wasm_image_targets(
     name = "open_policy_agent",
     wasm_file = ":open_policy_agent.wasm",
